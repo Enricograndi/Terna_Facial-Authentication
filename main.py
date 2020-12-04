@@ -1,5 +1,5 @@
-from FacialAuthentication_package import facematch
-from FacialAuthentication_package import image_manager
+from FacialAuthentication_package.scripts import facematch
+from FacialAuthentication_package.scripts import image_manager
 import argparse
 
 #try with the same face and same image
@@ -17,7 +17,7 @@ def parse_arguments():
 
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     #take the argument from terminal with argparse
     args = parse_arguments()
     image_manager.save_img_tmp(args.image)

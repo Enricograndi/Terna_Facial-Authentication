@@ -25,6 +25,6 @@ def save_img_tmp(image):
 def check_img_format(image):
     file, ext = os.path.splitext(image)##Divide the path image, into filename "dog" and extension ".jpg"
     if ext!=".jpg":
-        print("The file has a wrong format, try using .jpg file"
-        return false
-    return true
+        print("The file has a wrong format, try using .jpg file")
+        return False
+    return True
