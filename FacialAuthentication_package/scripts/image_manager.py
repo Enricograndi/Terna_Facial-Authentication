@@ -1,6 +1,7 @@
 import os
 from PIL import Image
 
+package_path = 'FacialAuthentication_package/'
 
 def image_weight(image):
     input_image = 'check.jpg'
@@ -8,6 +9,20 @@ def image_weight(image):
     dimension_mb = dimension_kb/(1024*1024)
     return dimension_mb
 
+def check_img_format(image):
+    file, ext = os.path.splitext(image)##Divide the path image, into filename "dog" and extension ".jpg"
+    if ext!=".jpg":
+        return True
+    return False
+
+def pngTojpg(image):
+    to_convert = check_img_format(image)
+    if to_convert == True:
+        im = Image.open(image)
+        rgb_im = im.convert('RGB')
+        rgb_im.save(package_path + 'data/tmp/image.jpg')
+        return (package_path + "data/tmp/image.jpg")
+    return image
 
 def comprime_image(input_image):
     size = image_weight(input_image)
@@ -18,13 +33,7 @@ def comprime_image(input_image):
     return input_image
 
 def save_img_tmp(image):
-    img = Image.open(image)
-    img.save('data/tmp/to_check.png')
-    comprime_image('data/tmp/to_check.png')
-    
-def check_img_format(image):
-    file, ext = os.path.splitext(image)##Divide the path image, into filename "dog" and extension ".jpg"
-    if ext!=".jpg":
-        print("The file has a wrong format, try using .jpg file")
-        return False
-    return True
+    img = pngTojpg(image)
+    img = Image.open(img)
+    img.save(package_path + 'data/tmp/image.jpg')
+    comprime_image(package_path + 'data/tmp/image.jpg')
