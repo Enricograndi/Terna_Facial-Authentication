@@ -37,3 +37,9 @@ def save_img_tmp(image):
     img = Image.open(img)
     img.save(package_path + 'data/tmp/image.jpg')
     comprime_image(package_path + 'data/tmp/image.jpg')
+    
+def jpgTobinary(jpg):
+    #Convert digital data to binary format
+    with open(jpg, 'rb') as file:
+        binary = file.read()
+    return binary
