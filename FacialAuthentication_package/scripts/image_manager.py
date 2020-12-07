@@ -50,3 +50,9 @@ def binaryToimg(data):
         file.write(data)
     #print("Stored temporary target image into: ", "tmp/target.jpg", "\n")
     return "FacialAuthentication_package/data/tmp/target.jpg"
+
+def remove_tmp():
+    if os.path.exists("FacialAuthentication_package/data/tmp/target.jpg"):
+        os.remove("FacialAuthentication_package/data/tmp/target.jpg")
+    else:
+        print("No temporary target image present")
