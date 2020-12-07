@@ -43,3 +43,10 @@ def jpgTobinary(jpg):
     with open(jpg, 'rb') as file:
         binary = file.read()
     return binary
+
+def binaryToimg(data):
+    # Convert binary data to proper format and write it on Hard Disk
+    with open("FacialAuthentication_package/data/tmp/target.jpg", 'wb') as file:
+        file.write(data)
+    #print("Stored temporary target image into: ", "tmp/target.jpg", "\n")
+    return "FacialAuthentication_package/data/tmp/target.jpg"
