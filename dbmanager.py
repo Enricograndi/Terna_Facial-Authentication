@@ -167,3 +167,4 @@ def db_face_auth(username, check_image, password):
     else:
         print("Wrong Password")
     return False
+    
