@@ -75,3 +75,21 @@ def encrypt(message, password, salt):
     key = generating_key(password, salt)
     encryption = Fernet(key).encrypt(message)
     return encryption
+
+def decrypt(message_encrypted, password, salt):
+    """perform symmetric decrption from password and salt,
+
+    :param message: the message to encript
+    :param password: the password given
+    :param salt: the salt given
+    :type message: string
+    :type password: string
+    :type salt: string
+    :return: the message encripted
+    :rtype: string
+    """
+
+    key = generating_key(password, salt)
+    decryption = Fernet(key).decrypt(message_encrypted)
+    decryption = decryption  # decode from bytes to string
+    return decryption
