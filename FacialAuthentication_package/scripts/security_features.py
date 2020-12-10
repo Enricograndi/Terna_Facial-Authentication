@@ -17,14 +17,3 @@ def generating_key(password, salt):
     )
     key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
     return key
-
-def encrypt(message, password, salt):
-    key = generating_key(password, salt)
-    encryption = Fernet(key).encrypt(message)
-    return encryption
-
-def decrypt(message_encrypted, password, salt):
-    key = generating_key(password, salt)
-    decryption = Fernet(key).decrypt(message_encrypted)
-    decryption = decryption  # decode from bytes to string
-    return decryption
