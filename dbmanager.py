@@ -36,3 +36,18 @@ def create_users_table():
                     password VARCHAR(255) NOT NULL,
                     salt SMALLINT NOT NULL,
                     PRIMARY KEY (username))''')
+
+def add_new_user(username, target_img, password):
+   
+    global conn
+    global cursor
+    salt = random.randint(1, 10000)
+    password = str(salt) + password
+    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    binary_img = image_manager.jpgTobinary(target_img)
+    encripted_binary_image = security_features.encrypt(binary_img,
+                                                       password, salt)
+    # if the user already exists, replace its image target and password
+    cursor.execute("INSERT OR REPLACE INTO users VALUES (?,?,?,?)",
+                   (username, encripted_binary_image, digest, salt))
+    conn.commit()
