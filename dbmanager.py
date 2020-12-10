@@ -52,3 +52,10 @@ def add_new_user(username, target_img, password):
                    (username, encripted_binary_image, digest, salt))
     conn.commit()
     
+    def remove_username(username):
+   
+    global conn
+    global cursor
+    # the username is the primary key
+    cursor.execute("DELETE FROM users WHERE username = ?", (username,))
+    conn.commit()
