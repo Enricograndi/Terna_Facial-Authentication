@@ -8,7 +8,7 @@ import base64
 def generating_key(password, salt):
     """In order to perform symmetric encription and decription we need to
     generate key from password that respect the requirment asked,
-    
+
     :param password: the password given
     :param salt: the salt given
     :type password: string
@@ -28,6 +28,7 @@ def generating_key(password, salt):
     key = base64.urlsafe_b64encode(kdf.derive(password))
     return key
 
+
 def encrypt(message, password, salt):
     """perform symmetric encription from password and salt,
 
@@ -44,6 +45,7 @@ def encrypt(message, password, salt):
     key = generating_key(password, salt)
     encryption = Fernet(key).encrypt(message)
     return encryption
+
 
 def decrypt(message_encrypted, password, salt):
     """perform symmetric decrption from password and salt,
@@ -62,3 +64,4 @@ def decrypt(message_encrypted, password, salt):
     decryption = Fernet(key).decrypt(message_encrypted)
     decryption = decryption  # decode from bytes to string
     return decryption
+
