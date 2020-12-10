@@ -58,3 +58,20 @@ def generating_key(password, salt):
     )
     key = base64.urlsafe_b64encode(kdf.derive(password))
     return key
+
+def encrypt(message, password, salt):
+    """perform symmetric encription from password and salt,
+
+    :param message: the message to encript
+    :param password: the password given
+    :param salt: the salt given
+    :type message: string
+    :type password: string
+    :type salt: string
+    :return: the message encripted
+    :rtype: string
+    """
+
+    key = generating_key(password, salt)
+    encryption = Fernet(key).encrypt(message)
+    return encryption
