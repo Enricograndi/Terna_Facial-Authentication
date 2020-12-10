@@ -17,3 +17,4 @@ def generating_key(password, salt):
     )
     key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
     return key
+
