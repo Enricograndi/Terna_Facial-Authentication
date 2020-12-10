@@ -59,3 +59,35 @@ def add_new_user(username, target_img, password):
     # the username is the primary key
     cursor.execute("DELETE FROM users WHERE username = ?", (username,))
     conn.commit()
+
+    def db_face_auth(username, check_image, password):
+   
+
+    global conn
+    global cursor
+
+    rows = cursor.execute("SELECT * FROM users WHERE username=?",
+                          (username,))
+    conn.commit()
+    results = rows.fetchall()
+    if len(results) == 0:
+        print("Wrong Username")
+        return False
+    # get the salt and prepend to the password before computing the digest
+    salt = str(results[0][3])
+    password = salt + password
+    # get the binary of the image, convert and check the match
+    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    if digest == results[0][2]:
+        encrypted_image = bytes(results[0][1])
+        binary_image = security_features.decrypt(encrypted_image,
+                                                 password, salt)
+        target_img = image_manager.binaryToimg(binary_image)
+        # return target_image
+        auth = facematch.match_image(check_image, target_img)
+        # remove temporary image
+        image_manager.remove_tmp()
+        return auth
+    else:
+        print("Wrong Password")
+    return False
