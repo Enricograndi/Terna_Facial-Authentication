@@ -14,9 +14,10 @@ def write_used():
         writer = csv.writer(file)
         writer.writerows(list_to_write)
 
+
 def first_time():
     """Read the file containing the action possible,
-    
+
     :return: True if never used before, otherwise False
     :rtype: boolean
     """

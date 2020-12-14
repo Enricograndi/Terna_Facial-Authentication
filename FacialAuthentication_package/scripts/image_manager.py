@@ -5,7 +5,7 @@ package_path = 'facialauthentication_package/'
 
 
 def image_weight(image):
-    """Take the image and check the weight 
+    """Take the image and check the weight
 
     :param path: The path to the image
     :type path: string
@@ -97,7 +97,7 @@ def save_img_tmp(image):
 
 
 def jpgTobinary(filename):
-    """Read the binary of the image and return 
+    """Read the binary of the image and return
 
     :param path: The path to the image
     :type path: string
@@ -127,7 +127,7 @@ def binaryToimg(data):
 
 def remove_tmp():
     """Remove target on the tmp folder
-    
+
     :param path: None
     :type path: None
     :return: None
