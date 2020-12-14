@@ -11,7 +11,7 @@ db_path = package_path + '/data/database.db'
 
 def parse_arguments(list_action):
     """Take the argument from the terminal
-    
+
     :param path: None
     :type path: None
     :return: arguments
@@ -21,12 +21,13 @@ def parse_arguments(list_action):
     parser = argparse.ArgumentParser(description="Faccial authenticator"
                                      " Choose an action: -(u) authenticate, "
                                      "-(r) remove user, -(a): add user. "
-                                     "All action require:"
-                                     "-*(username) -p(password) -i(path of your image)",
+                                     "All action require:",
+                                     "-*(username) -p(password)",
+                                     "-i(path of your image)",
                                      prog="faccial_authentication",
                                      usage="%(prog)s [options]",
                                      epilog="Using cloudmersive API")
-    parser.add_argument("action", choices= list_action,
+    parser.add_argument("action", choices=list_action,
                         help="Choose an action")
     parser.add_argument('-u',
                         required=True, help="Username")
@@ -36,7 +37,7 @@ def parse_arguments(list_action):
                         required=True, help="Image path for face match (-i)")
     parser.add_argument('-v',
                         help="False to not show image match results",
-                        action="store_true",required=False)
+                        action="store_true", required=False)
     args = parser.parse_args()
     return args
 
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         if args.action == "AUTH":
             # Match faces
             auth = db.db_face_auth(args.u, args.i, args.p)
-            if auth is False: 
+            if auth is False:
                 # The password is inccorect
                 print("Try again")
             elif auth.successful is True:
@@ -73,7 +74,8 @@ if __name__ == "__main__":
                 if auth.faces[0].match_score > 0.6:
                     print("Hi! " + args.u + " you are logged in")
                     if args.v is False:
-                        #if not specify print the match results, check verbosity
+                        # if not specify print the match results
+                        # check verbosity
                         print(auth)
                 else:
                     print("You are not" + args.u)
