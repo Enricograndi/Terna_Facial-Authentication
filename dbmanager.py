@@ -6,7 +6,7 @@ import random
 import hashlib
 
 package_path = 'facialauthentication_package'
-db_path = package_path +'/data/database.db'
+db_path = package_path + '/data/database.db'
 
 conn = None
 cursor = None
@@ -14,7 +14,7 @@ cursor = None
 
 def open_or_create_db(db_path):
     """Connect to the database and if not exist call create_users table()
-    
+
     :return: no value
     :rtype: none
     """
@@ -90,9 +90,10 @@ def remove_username(username):
     cursor.execute("DELETE FROM users WHERE username = ?", (username,))
     conn.commit()
 
+
 def check_user(username):
     """Check the username of the user
-	from the database
+    from the database
 
     :param username: the username
     :type username: string
@@ -110,9 +111,9 @@ def check_user(username):
         return False
     return results
 
-def check_password(username,password):
-    """Check the password of the user
-	from the database
+
+def check_password(username, password):
+    """Check the password of the user from the database
 
     :param username: the username
     :type username: string
@@ -121,8 +122,8 @@ def check_password(username,password):
     :return: False or True
     :rtype: Bool
     """
-    results=check_user(username)
-    if results is not False: 
+    results = check_user(username)
+    if results is not False:
         # get the salt and prepend to the password before computing the digest
         salt = str(results[0][3])
         password = salt + password
@@ -140,7 +141,7 @@ def db_face_auth(username, check_image, password):
     password provided by the user is the same as the digest computed as above,
     the function wiil decript the image on the db and try to match. Otherwise
     print "write password"
-    
+
     :param username: the username provided by the user for the authentication
     :param check_image: the path provided by the user for the image
     :param password: the password provided by the user for the authentication
@@ -151,8 +152,8 @@ def db_face_auth(username, check_image, password):
     global conn
     global cursor
 
-    results=check_user(username)
-    if results is not False:#check if the username is correct
+    results = check_user(username)
+    if results is not False:  # check if the username is correct
         # get the salt and prepend to the password before computing the digest
         salt = str(results[0][3])
         password = salt + password
@@ -161,7 +162,7 @@ def db_face_auth(username, check_image, password):
         if digest == results[0][2]:
             encrypted_image = bytes(results[0][1])
             binary_image = security_features.decrypt(encrypted_image,
-                                                    password, salt)
+                                                     password, salt)
             target_img = image_manager.binaryToimg(binary_image)
             # return target_image
             auth = facematch.match_image(check_image, target_img)
@@ -174,3 +175,4 @@ def db_face_auth(username, check_image, password):
     else:
         print("Username does not exist")
         return False
+
