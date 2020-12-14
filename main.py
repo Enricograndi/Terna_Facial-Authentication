@@ -41,10 +41,41 @@ def parse_arguments(list_action):
     return args
 
 if __name__ == "__main__":
-    #take the argument from terminal with argparse
-    args = parse_arguments()
-    image_manager.save_img_tmp(args.image)
-
-
-
-
+    # Take the argument from terminal with argparse
+    list_action = action_reader.read_action()
+    args = parse_arguments(list_action)
+    # While the format of the image is not .jpg repit arg
+    if image_manager.check_image(args.i) is True:
+        image_manager.save_img_tmp(args.i)
+        # If it is the first time, ask to add a user
+        if first_time_checker.first_time() is True:
+            print("There aren't users in the database")
+        # Open the connection with db and (IF NECESSARY)
+        db.open_or_create_db(db_path)
+        # Severals control based on args
+        if args.action == "ADD":
+            # Add new user
+            db.add_new_user(args.u, args.i, args.p)
+            first_time_checker.write_used()
+            print("Added User: "+args.u)
+        if args.action == "REMOVE":
+            # Remove user
+            db.remove_username(args.u)
+            print("User removed")
+        if args.action == "AUTH":
+            # Match faces
+            auth = db.db_face_auth(args.u, args.i, args.p)
+            if auth is False: 
+                # The password is inccorect
+                print("Try again")
+            elif auth.successful is True:
+                # Match done
+                if auth.faces[0].match_score > 0.6:
+                    print("Hi! " + args.u + " you are logged in")
+                    if args.v is False:
+                        #if not specify print the match results, check verbosity
+                        print(auth)
+                else:
+                    print("You are not" + args.u)
+            else:
+                print("There aren't faces on the image you have provided")
