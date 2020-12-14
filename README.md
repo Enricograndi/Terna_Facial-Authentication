@@ -1,7 +1,133 @@
 # Terna_Facial Authentication
- Project for the exam of Lab of software project devolpement
 
- Team Members: 
- Enrico Grandi 989993
- Tommaso Spessato 873197
- Ariton Duka 872516
+In this repository you can find a file named ```main.py``` that try to simulate a double authetication with a password and a face match thanks to the Cloudmersive API.
+
+[Cloudmersive](https://cloudmersive.com//) is an on-line service that provides some API that allow to use some visual resource via cloud. The APIs are documented in a [API documentation page](https://api.cloudmersive.com/), they also provide an [Online console](https://api.cloudmersive.com/swagger/index.html?urls.primaryName=Image%20Recognition%20and%20Processing%20API).
+
+An example? Try to execute the main file with: ```python main.py AUTH -u totti -p totti -i facialauthentication_package\data\test\totti.jpg ```  
+
+> **Note:** the project requires the following modules to run: *argparse, sqlite3, random, hashlib, os, CSV, cloudmersive_image_api_client, Image, paramiko... unittest* and *sys*.
+
+A user can choose the action to perform: it is possibile to:
+AUTH, ADD or REMOVE. More information below.
+
+
+ 
+
+## Documentation 
+Documentation can be found in: ```docs/_build/html/index.html``` and provides infos about the functions you can find in the various modules.
+ 
+To read them with your **default browser**, from the main folder use ```$ open docs/_build/html/index.html``` or, for other browsers you may have installed, follow these examples:
+- **Chrome:** ```$ open -a "Google Chrome" docs/_build/html/index.html```
+- **Safari:** ```$ open -a "Safari" docs/_build/html/index.html```
+
+
+**DOCUMENTATION MADE WITH: [Sphinx](http://www.sphinx-doc.org/en/master/).**
+
+
+
+## Command line parameters
+As we have mentioned in the first section, some command line parameters are required in order to run the main script.
+#### Positional arguments
+- **An action is required**: In order to inform the package if to (AUTH)authenticate, (ADD) or to (REMOVE) an user.**Only one** symbol can be passed.
+. 
+#### Optional arguments
+- **-h, --help:** show this help message and exit.  
+- **-v:** There are **two level** of verbosity, False to show information about the image match.   
+- **-u U [required]:** the username (requires *-p*).  
+- **-p P [required]:** the user's password.   
+- **-i P [required]:** the image's path. 
+
+## Authenticate a user
+
+This is the example abovemetioneted.
+```
+python main.py AUTH -u totti -p totti -i facialauthentication_package\data\test\totti.jpg
+
+Hi! totti you are logged in
+{'error_details': None,
+ 'face_count': 1,
+ 'faces': [{'bottom_y': 158,
+            'high_confidence_match': True,
+            'left_x': 250,
+            'match_score': 1.0,
+            'right_x': 353,
+            'top_y': 54}],
+ 'successful': True}
+```
+
+## How to populate the database
+In order to run ```main.py``` you will need a **username**, a **password** and an image. The package comes with a **default user** with the following credenentials:
+- *username*: **totti**
+- *password*: **totti**
+- *image*: **data/test/totti.jpg**
+
+You may want to remove or add new users. You can find a helper module ```dbmanager.py``` in the parent directory that allows you to populate the database.
+
+#### Adding a new user
+Use the action ```ADD```. Requires the following:
+ - **-u:** username 
+ - **-p:** password
+ - **-i:** image path
+
+
+ ```
+python main.py ADD -u totti -p totti -i facialauthentication_package\data\test\totti.jpg
+
+Added User: totti
+```
+#### Removing a user
+Use the action ```REMOVE```. Requires the following:
+
+```
+python main.py REMOVE -u totti -p totti -i facialauthentication_package\data\test\totti.jpg
+
+User removed
+```
+#### Authenticate a user
+```
+python main.py AUTH -u totti -p totti -i facialauthentication_package\data\test\totti.jpg
+
+Hi! totti you are logged in
+{'error_details': None,
+ 'face_count': 1,
+ 'faces': [{'bottom_y': 158,
+            'high_confidence_match': True,
+            'left_x': 250,
+            'match_score': 1.0,
+            'right_x': 353,
+            'top_y': 54}],
+ 'successful': True}
+```
+
+## Testing
+Tests on parts of the code are provided here: ```facialauthentication_package/test/``` .  
+You can find a modul: ```test_check_password.py```.
+To run them **from the main folder** use:```python -m unittest -v -b facialauthentication_package/test/test_check_password.py``:
+
+```
+python -m unittest -v -b facialauthentication_package/test/test_check_password.py
+test_correct_user (facialauthentication_package.test.test_check_password.TestInput) ... ok
+test_face_authentication_wrong_data (facialauthentication_package.test.test_check_password.TestInput) ... ok
+test_wrong_password (facialauthentication_package.test.test_check_password.TestInput) ... ok
+test_wrong_user (facialauthentication_package.test.test_check_password.TestInput) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+OK
+```
+
+## Support
+You need help? Get in touch with the authors on [Linkedin](https://www.linkedin.com/)!
+
+## Authors and acknowledgment
+Thank you all for the collaboration! Follow the authors on linkedin!
+- [****](https://www.linkedin.com/in/leonardo-antinucci-05b9b0125/)
+- [****](https://www.linkedin.com/in/federico-contini-457660162)
+- [****](https://www.linkedin.com/in/alexandru-duma/)
+- [****](https://www.linkedin.com/in/margherita-menegazzi-153b88199/)
+
+
+## License
+[GPL](https://www.gnu.org/licenses/gpl-3.0.html)
