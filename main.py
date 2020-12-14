@@ -1,21 +1,44 @@
-from FacialAuthentication_package.scripts import facematch
-from FacialAuthentication_package.scripts import image_manager
+import dbmanager as db
+from facialauthentication_package.scripts import facematch
+from facialauthentication_package.scripts import first_time_checker
+from facialauthentication_package.scripts import image_manager
+from facialauthentication_package.scripts import action_reader
 import argparse
 
-#try with the same face and same image
-#target_img = image_manager.comprime_image("data/test/check_image.jpg")
-#check_img = image_manager.comprime_image("data/test/check_image.jpg")
-#result = facematch.match_image(target_img,check_img)
-#print(result)
+package_path = 'facialauthentication_package/'
+db_path = package_path + '/data/database.db'
 
 
-def parse_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-i', "--image", required=True, help="add an image to allow the face authentication (-i)")
+def parse_arguments(list_action):
+    """Take the argument from the terminal
+    
+    :param path: None
+    :type path: None
+    :return: arguments
+    :rtype: String
+    """
+
+    parser = argparse.ArgumentParser(description="Faccial authenticator"
+                                     " Choose an action: -(u) authenticate, "
+                                     "-(r) remove user, -(a): add user. "
+                                     "All action require:"
+                                     "-*(username) -p(password) -i(path of your image)",
+                                     prog="faccial_authentication",
+                                     usage="%(prog)s [options]",
+                                     epilog="Using cloudmersive API")
+    parser.add_argument("action", choices= list_action,
+                        help="Choose an action")
+    parser.add_argument('-u',
+                        required=True, help="Username")
+    parser.add_argument('-p',
+                        help="Password for the user", required=True)
+    parser.add_argument('-i',
+                        required=True, help="Image path for face match (-i)")
+    parser.add_argument('-v',
+                        help="False to not show image match results",
+                        action="store_true",required=False)
     args = parser.parse_args()
     return args
-
-
 
 if __name__ == "__main__":
     #take the argument from terminal with argparse
