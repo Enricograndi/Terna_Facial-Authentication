@@ -8,7 +8,7 @@ def match_image(check_image, target_image):
     """Connect to the cloudmersive host in order to ask to perform the match
     using the 2 image given as parameter. check_image is the image that will
     be machted with target_image.
-    
+
     :param path: The path of the two images
     :type path: string
     :return: the Json containing infos about the match
