@@ -1,9 +1,12 @@
 from facialauthentication_package.scripts import facematch
-from facialauthentication_package.scripts import security_features
 from facialauthentication_package.scripts import image_manager
+from facialauthentication_package.scripts import security_features
 import sqlite3
 import random
 import hashlib
+
+package_path = 'facialauthentication_package'
+db_path = package_path +'/data/database.db'
 
 conn = None
 cursor = None
@@ -88,7 +91,8 @@ def remove_username(username):
     conn.commit()
 
 def check_user(username):
-    """Check if the user exist in table
+    """Check the username of the user
+	from the database
 
     :param username: the username
     :type username: string
@@ -103,27 +107,29 @@ def check_user(username):
     conn.commit()
     results = rows.fetchall()
     if len(results) == 0:
-        print("Wrong Username")
         return False
     return results
 
 def check_password(username,password):
     """Check the password of the user
-    from the database
+	from the database
 
     :param username: the username
     :type username: string
-    :return: False or List
-    :rtype: Bool or or List
+    :param password: the username
+    :type password: string
+    :return: False or True
+    :rtype: Bool
     """
     results=check_user(username)
-    # get the salt and prepend to the password before computing the digest
-    salt = str(results[0][3])
-    password = salt + password
-    # get the binary of the image, convert and check the match
-    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    if digest == results[0][2]:
-        return True
+    if results is not False: 
+        # get the salt and prepend to the password before computing the digest
+        salt = str(results[0][3])
+        password = salt + password
+        # get the binary of the image, convert and check the match
+        digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        if digest == results[0][2]:
+            return True
     return False
 
 
@@ -146,25 +152,25 @@ def db_face_auth(username, check_image, password):
     global cursor
 
     results=check_user(username)
-
-    salt = str(results[0][3])
-
-    # get the salt and prepend to the password before computing the digest
-    salt = str(results[0][3])
-    password = salt + password
+    if results is not False:#check if the username is correct
+        # get the salt and prepend to the password before computing the digest
+        salt = str(results[0][3])
+        password = salt + password
     # get the binary of the image, convert and check the match
-    digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    if digest == results[0][2]:
-        encrypted_image = bytes(results[0][1])
-        binary_image = security_features.decrypt(encrypted_image,
-                                                 password, salt)
-        target_img = image_manager.binaryToimg(binary_image)
-        # return target_image
-        auth = facematch.match_image(check_image, target_img)
-        # remove temporary image
-        image_manager.remove_tmp()
-        return auth
+        digest = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        if digest == results[0][2]:
+            encrypted_image = bytes(results[0][1])
+            binary_image = security_features.decrypt(encrypted_image,
+                                                    password, salt)
+            target_img = image_manager.binaryToimg(binary_image)
+            # return target_image
+            auth = facematch.match_image(check_image, target_img)
+            # remove temporary image
+            image_manager.remove_tmp()
+            return True
+        else:
+            print("Wrong Password")
+            return False
     else:
-        print("Wrong Password")
-    return False
-    
+        print("Username does not exist")
+        return False
