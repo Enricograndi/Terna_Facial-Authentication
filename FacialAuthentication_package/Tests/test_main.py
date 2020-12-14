@@ -21,6 +21,13 @@ class TestInput(unittest.TestCase):
         # imput of a wrong user
         self.assertEqual(db.check_password("Totto","totti"), False)
 
+    def test_wrong_password(self):
+        # you should input wrong data
+        self.assertEqual(db.check_password("Totti","notmmypasssword"), False)
+
+    # corner case: empty input
+    def test_face_authentication_wrong_data(self):
+        self.assertEqual(db.check_password("",""), False)
 
 if __name__ == '__main__':
     unittest.main()
