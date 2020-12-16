@@ -58,16 +58,6 @@ Hi! totti you are logged in
 ```
  
 
-## Documentation 
-Documentation can be found in: ```docs/html/index.html``` and provides infos about the functions you can find in the various modules.
- 
-To read them with your **default browser**, from the main folder use ```$ open docs/html/index.html``` or, for other browsers you may have installed, follow these examples:
-- **Chrome:** ```$ open -a "Google Chrome" docs/html/index.html```
-- **Safari:** ```$ open -a "Safari" docs/html/index.html```
-
-
-**DOCUMENTATION MADE WITH: [Sphinx](http://www.sphinx-doc.org/en/master/).**
-
 ## How to populate the database
 In order to run ```main.py``` you will need a **username**, a **password** and an image. The package comes with a **default user** with the following credenentials:
 - *username*: **totti**
