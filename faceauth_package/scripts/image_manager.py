@@ -76,7 +76,8 @@ def check_image(image):
     try:
         Image.open(image)
         return True
-    except image.ImageNotFoundException:
+    except Exception:
+        print("No valid Image")
         return False
 
 
