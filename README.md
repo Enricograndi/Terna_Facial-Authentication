@@ -9,7 +9,7 @@ An example? Try to execute the main file with: ```python main.py AUTH -u totti -
 > **Note:** the project requires the following modules to run: *argparse, sqlite3, pandas, random, hashlib, os, csv, cloudmersive_image_api_client, Image, paramiko, cryptography, PIL, base64, unittest* and *sys*.
 
 A user can choose the action to perform: it is possibile to:
-AUTH, ADD or REMOVE. More information below.
+AUTH, ADD or REMOVE. Once the user has insert the his data. Username is store in the database, the password is used to generate a key that is used to encrypt and decrypt the binary of the image, and then the encrypted binary is saved in the database. At the end, the password is hashed with a Nonce and saved. When the user try to log-in, the hash and the key of the password is generated, checked if is the same and then the image is decrypted and matched.  More information below.
 
 
 
