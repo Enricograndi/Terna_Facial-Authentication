@@ -4,7 +4,8 @@ package_path = 'faceauth_package/'
 
 
 def write_used():
-    """Open the CSV containing information about package usage and write the value
+    """Open the CSV containing information about package usage and write the
+    value
 
     :return: No value
     :rtype: none
