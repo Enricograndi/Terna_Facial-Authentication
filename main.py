@@ -5,7 +5,7 @@ from faceauth_package.scripts import image_manager
 from faceauth_package.scripts import action_reader
 import argparse
 
-package_path = 'facialauthentication_package/'
+package_path = 'faceauth_package/'
 db_path = package_path + '/data/database.db'
 
 
