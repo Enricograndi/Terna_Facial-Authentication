@@ -1,6 +1,6 @@
 import csv
 
-package_path = 'facialauthentication_package/'
+package_path = 'faceauth_package/'
 
 
 def write_used():

@@ -1,11 +1,11 @@
-from facialauthentication_package.scripts import facematch
-from facialauthentication_package.scripts import image_manager
-from facialauthentication_package.scripts import security_features
+from faceauth_package.scripts import facematch
+from faceauth_package.scripts import image_manager
+from faceauth_package.scripts import security_features
 import sqlite3
 import random
 import hashlib
 
-package_path = 'facialauthentication_package'
+package_path = 'faceauth_package'
 db_path = package_path + '/data/database.db'
 
 conn = None
