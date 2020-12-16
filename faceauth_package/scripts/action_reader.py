@@ -1,6 +1,6 @@
 import pandas as pd
 
-package_path = 'facialauthentication_package/'
+package_path = 'faceauth_package/'
 
 
 def read_action():

@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-package_path = 'facialauthentication_package/'
+package_path = 'faceauth_package/'
 
 
 def image_weight(image):
@@ -118,10 +118,10 @@ def binaryToimg(data):
     :rtype: string
     """
     # Convert binary data to proper format and write it on Hard Disk
-    with open("FacialAuthentication_package/data/tmp/target.jpg",
+    with open(package_path + "/data/tmp/target.jpg",
               'wb') as file:
         file.write(data)
-    return "FacialAuthentication_package/data/tmp/target.jpg"
+    return package_path + "/data/tmp/target.jpg"
 
 
 def remove_tmp():
@@ -132,7 +132,7 @@ def remove_tmp():
     :return: None
     :rtype: None
     """
-    if os.path.exists("FacialAuthentication_package/data/tmp/target.jpg"):
-        os.remove("FacialAuthentication_package/data/tmp/target.jpg")
+    if os.path.exists(package_path + "/data/tmp/target.jpg"):
+        os.remove(package_path + "/data/tmp/target.jpg")
     else:
         print("No temporary target image present")
