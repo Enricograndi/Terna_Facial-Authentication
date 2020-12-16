@@ -4,7 +4,7 @@ In this repository you can find a file named ```main.py``` that try to simulate 
 
 [Cloudmersive](https://cloudmersive.com//) is an on-line service that provides some API that allow to use some visual resource via cloud. The APIs are documented in a [API documentation page](https://api.cloudmersive.com/), they also provide an [Online console](https://api.cloudmersive.com/swagger/index.html?urls.primaryName=Image%20Recognition%20and%20Processing%20API).
 
-An example? Try to execute the main file with: ```python main.py AUTH -u totti -p totti -i facialauthentication_package\data\test\totti.jpg ```  
+An example? Try to execute the main file with: ```python main.py AUTH -u totti -p totti -i faceauth_package\data\test\totti.jpg ```  
 
 > **Note:** the project requires the following modules to run: *argparse, sqlite3, random, hashlib, os, CSV, cloudmersive_image_api_client, Image, paramiko... unittest* and *sys*.
 
