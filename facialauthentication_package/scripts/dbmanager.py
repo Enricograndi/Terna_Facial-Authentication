@@ -18,6 +18,7 @@ def open_or_create_db(db_path):
     :return: no value
     :rtype: none
     """
+
     global conn
     global cursor
 
@@ -113,7 +114,8 @@ def check_user(username):
 
 
 def check_password(username, password):
-    """Check the password of the user from the database
+    """ Check the password of the user
+    from the database
 
     :param username: the username
     :type username: string
@@ -168,11 +170,10 @@ def db_face_auth(username, check_image, password):
             auth = facematch.match_image(check_image, target_img)
             # remove temporary image
             image_manager.remove_tmp()
-            return True
+            return auth
         else:
             print("Wrong Password")
             return False
     else:
         print("Username does not exist")
         return False
-
