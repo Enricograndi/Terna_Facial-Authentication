@@ -1,4 +1,4 @@
-import dbmanager as db
+from facialauthentication_package.scripts import dbmanager as db
 from facialauthentication_package.scripts import facematch
 from facialauthentication_package.scripts import first_time_checker
 from facialauthentication_package.scripts import image_manager
@@ -19,11 +19,9 @@ def parse_arguments(list_action):
     """
 
     parser = argparse.ArgumentParser(description="Faccial authenticator"
-                                     " Choose an action: -(u) authenticate, "
-                                     "-(r) remove user, -(a): add user. "
-                                     "All action require:",
-                                     "-*(username) -p(password)",
-                                     "-i(path of your image)",
+                                     " Choose an action: AUTH, REMOVE, DELETE"
+                                     " All action require:"
+                                     " Usename -p password -i imagepath",
                                      prog="faccial_authentication",
                                      usage="%(prog)s [options]",
                                      epilog="Using cloudmersive API")
