@@ -40,7 +40,7 @@ As we have mentioned in the first section, some command line parameters are requ
 
 ## Authenticate a user
 
-This is the example abovemetioneted.
+This is the example above mentioned.
 ```
 python main.py AUTH -u totti -p totti -i facialauthentication_package\data\test\totti.jpg
 
@@ -123,10 +123,11 @@ You need help? Get in touch with the authors on [Linkedin](https://www.linkedin.
 
 ## Authors and acknowledgment
 Thank you all for the collaboration! Follow the authors on linkedin!
-- [****](https://www.linkedin.com/in/leonardo-antinucci-05b9b0125/)
-- [****](https://www.linkedin.com/in/federico-contini-457660162)
-- [****](https://www.linkedin.com/in/alexandru-duma/)
-- [****](https://www.linkedin.com/in/margherita-menegazzi-153b88199/)
+- [****](https://www.linkedin.com/in/nicolò-nogara-bb132413b)
+- [****](https://www.linkedin.com/in/enrico-grandi/)
+- [****](https://www.linkedin.com/in/ariton-duka-571069173/)
+- [****](https://www.linkedin.com/in/tommaso-spessato-849535176/)
+- [****](https://www.linkedin.com/in/roberto-franchini-1200891b1/)
 
 
 ## License
