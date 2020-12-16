@@ -41,6 +41,7 @@ def parse_arguments(list_action):
     args = parser.parse_args()
     return args
 
+
 if __name__ == "__main__":
     # Take the argument from terminal with argparse
     list_action = action_reader.read_action()

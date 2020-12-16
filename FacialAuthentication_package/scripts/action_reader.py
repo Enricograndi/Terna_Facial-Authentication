@@ -12,3 +12,4 @@ def read_action():
 
     action_list = pd.read_csv(package_path + "data/action.csv").values.tolist()
     return action_list[0]
+    

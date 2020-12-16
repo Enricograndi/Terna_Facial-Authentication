@@ -64,4 +64,3 @@ def decrypt(message_encrypted, password, salt):
     decryption = Fernet(key).decrypt(message_encrypted)
     decryption = decryption  # decode from bytes to string
     return decryption
-    
