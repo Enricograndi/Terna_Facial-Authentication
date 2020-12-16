@@ -115,19 +115,6 @@ Hi! totti you are logged in
 ## Testing
 Tests on parts of the code are provided here: ```
 
-
- 
-
-## Documentation 
-Documentation can be found in: ```docs/html/index.html``` and provides infos about the functions you can find in the various modules.
- 
-To read them with your **default browser**, from the main folder use ```$ open docs/html/index.html``` or, for other browsers you may have installed, follow these examples:
-- **Chrome:** ```$ open -a "Google Chrome" docs/html/index.html```
-- **Safari:** ```$ open -a "Safari" docs/html/index.html```
-
-
-**DOCUMENTATION MADE WITH: [Sphinx](http://www.sphinx-doc.org/en/master/).**
-
 /test/``` .  
 You can find a modul: ```test_check_password.py```.
 To run them **from the main folder** use:```python -m unittest -v -b /test/test_check_password.py``:
@@ -150,11 +137,11 @@ You need help? Get in touch with the authors on [Linkedin](https://www.linkedin.
 
 ## Authors and acknowledgment
 Thank you all for the collaboration! Follow the authors on linkedin!
-- [****](https://www.linkedin.com/in/nicolò-nogara-bb132413b)
-- [****](https://www.linkedin.com/in/enrico-grandi/)
-- [****](https://www.linkedin.com/in/ariton-duka-571069173/)
-- [****](https://www.linkedin.com/in/tommaso-spessato-849535176/)
-- [****](https://www.linkedin.com/in/roberto-franchini-1200891b1/)
+- [**Nicolò Nogara**](https://www.linkedin.com/in/nicolò-nogara-bb132413b)
+- [**Enrico Grandi**](https://www.linkedin.com/in/enrico-grandi/)
+- [**Ariton Duka**](https://www.linkedin.com/in/ariton-duka-571069173/)
+- [**Tommaso Spessato**](https://www.linkedin.com/in/tommaso-spessato-849535176/)
+- [**Roberto Franchini**](https://www.linkedin.com/in/roberto-franchini-1200891b1/)
 
 
 ## License
