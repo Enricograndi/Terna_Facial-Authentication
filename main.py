@@ -1,4 +1,4 @@
-from faceauth_package.scripts import dbmanager as db
+import dbmanager as db
 from faceauth_package.scripts import facematch
 from faceauth_package.scripts import first_time_checker
 from faceauth_package.scripts import image_manager
