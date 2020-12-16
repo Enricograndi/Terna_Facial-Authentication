@@ -34,7 +34,6 @@ As we have mentioned in the first section, some command line parameters are requ
 . 
 #### Optional arguments
 - **-h, --help:** show this help message and exit.  
-- **-v:** There are **two level** of verbosity, False to show information about the image match.   
 - **-u U [required]:** the username (requires *-p*).  
 - **-p P [required]:** the user's password.   
 - **-i P [required]:** the image's path. 
